@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TypeNova — Typing Test</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ================= TOP BAR ================= -->
+    <header class="topbar">
+
+        <div class="brand">
+            <div class="logo">TN</div>
+            <div>
+                <h1>TypeNova</h1>
+                <span>typing laboratory</span>
+            </div>
+        </div>
+
+        <div class="top-actions">
+
+            <div class="best-score">
+                <span>BEST</span>
+                <strong id="bestWpm">0</strong>
+                <small>WPM</small>
+            </div>
+
+            <button class="top-btn" id="themeButton">
+                🎨 Theme
+            </button>
+
+            <button class="top-btn" id="settingsButton">
+                ⚙ Settings
+            </button>
+
+        </div>
+    </header>
+
+
+    <!-- ================= THEME MENU ================= -->
+
+    <div class="dropdown theme-menu" id="themeMenu">
+
+        <div class="menu-title">Choose Theme</div>
+
+        <button class="theme-option active" data-theme="nova">
+            <span class="theme-dot nova-dot"></span>
+            Nova Purple
+        </button>
+
+        <button class="theme-option" data-theme="midnight">
+            <span class="theme-dot midnight-dot"></span>
+            Midnight Blue
+        </button>
+
+        <button class="theme-option" data-theme="matrix">
+            <span class="theme-dot matrix-dot"></span>
+            Matrix Green
+        </button>
+
+    </div>
+
+
+    <!-- ================= SETTINGS MENU ================= -->
+
+    <div class="dropdown settings-menu" id="settingsMenu">
+
+        <div class="menu-title">Settings</div>
+
+        <label class="setting-row">
+            <span>Sound</span>
+            <input type="checkbox" id="soundToggle">
+        </label>
+
+        <label class="setting-row">
+            <span>Show Errors</span>
+            <input type="checkbox" id="errorToggle" checked>
+        </label>
+
+        <label class="setting-row">
+            <span>Auto Focus</span>
+            <input type="checkbox" id="autoFocusToggle" checked>
+        </label>
+
+    </div>
+
+
+    <main class="container">
+
+        <!-- ================= CONTROL PANEL ================= -->
+
+        <section class="control-panel">
+
+            <div class="control-group">
+
+                <span class="control-label">TIME</span>
+
+                <div class="control-buttons">
+
+                    <button class="time-btn active" data-time="15">
+                        15s
+                    </button>
+
+                    <button class="time-btn" data-time="30">
+                        30s
+                    </button>
+
+                    <button class="time-btn" data-time="60">
+                        60s
+                    </button>
+
+                    <button class="time-btn" data-time="120">
+                        120s
+                    </button>
+
+                    <button class="time-btn" id="customTimeButton">
+                        Custom
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="control-group">
+
+                <span class="control-label">MODE</span>
+
+                <div class="control-buttons">
+
+                    <button class="mode-btn active" data-mode="paragraph">
+                        Paragraph
+                    </button>
+
+                    <button class="mode-btn" data-mode="sentences">
+                        Sentences
+                    </button>
+
+                    <button class="mode-btn" data-mode="words">
+                        Words
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= STATS ================= -->
+
+        <section class="stats">
+
+            <div class="stat-card">
+                <span>TIME</span>
+                <strong id="timeDisplay">15</strong>
+            </div>
+
+            <div class="stat-card">
+                <span>WPM</span>
+                <strong id="wpmDisplay">0</strong>
+            </div>
+
+            <div class="stat-card">
+                <span>ACCURACY</span>
+                <strong id="accuracyDisplay">100%</strong>
+            </div>
+
+            <div class="stat-card">
+                <span>ERRORS</span>
+                <strong id="errorsDisplay">0</strong>
+            </div>
+
+        </section>
+
+
+        <!-- ================= PROGRESS ================= -->
+
+        <section class="progress-section">
+
+            <div class="progress-info">
+                <span>Reading Progress</span>
+                <span id="progressText">0%</span>
+            </div>
+
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+
+        </section>
+
+
+        <!-- ================= TYPING AREA ================= -->
+
+        <section class="typing-card" id="typingCard">
+
+            <div class="typing-header">
+
+                <span>
+                    START TYPING
+                </span>
+
+                <span class="live-status" id="liveStatus">
+                    ● READY
+                </span>
+
+            </div>
+
+
+            <div
+                class="typing-text"
+                id="typingText"
+                tabindex="0"
+            ></div>
+
+
+            <input
+                type="text"
+                id="typingInput"
+                autocomplete="off"
+                autocorrect="off"
+                autocapitalize="off"
+                spellcheck="false"
+                aria-label="Typing input"
+            >
+
+
+            <div class="typing-footer">
+
+                <span>
+                    Type the text above
+                </span>
+
+                <button id="restartButton" class="restart-btn">
+                    ↻ Restart
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= SHORTCUTS ================= -->
+
+        <section class="shortcuts">
+
+            <span>
+                <kbd>Tab</kbd>
+                Restart
+            </span>
+
+            <span>
+                <kbd>Esc</kbd>
+                Reset
+            </span>
+
+            <span>
+                <kbd>T</kbd>
+                Theme
+            </span>
+
+            <span>
+                <kbd>Space</kbd>
+                Start
+            </span>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= RESULT MODAL ================= -->
+
+    <div class="modal-overlay" id="resultModal">
+
+        <div class="modal">
+
+            <button class="close-modal" id="closeResult">
+                ×
+            </button>
+
+            <div class="result-icon">
+                ✦
+            </div>
+
+            <h2>Test Complete</h2>
+
+            <p class="result-subtitle">
+                Here is your typing performance
+            </p>
+
+
+            <div class="result-grid">
+
+                <div class="result-item">
+                    <span>WPM</span>
+                    <strong id="resultWpm">0</strong>
+                </div>
+
+                <div class="result-item">
+                    <span>Accuracy</span>
+                    <strong id="resultAccuracy">100%</strong>
+                </div>
+
+                <div class="result-item">
+                    <span>Errors</span>
+                    <strong id="resultErrors">0</strong>
+                </div>
+
+                <div class="result-item">
+                    <span>Characters</span>
+                    <strong id="resultCharacters">0</strong>
+                </div>
+
+            </div>
+
+
+            <button class="modal-restart" id="modalRestart">
+                Try Again
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= CUSTOM TIMER MODAL ================= -->
+
+    <div class="modal-overlay" id="customModal">
+
+        <div class="modal custom-modal">
+
+            <button class="close-modal" id="closeCustom">
+                ×
+            </button>
+
+            <h2>Custom Timer</h2>
+
+            <p class="result-subtitle">
+                Choose a timer between 5 and 600 seconds
+            </p>
+
+            <input
+                type="number"
+                id="customTimeInput"
+                min="5"
+                max="600"
+                value="90"
+            >
+
+            <button class="modal-restart" id="applyCustom">
+                Apply Timer
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <footer>
+        <p>TypeNova © 2026 • Improve your typing every day.</p>
+    </footer>
+
+
+    <script src="game.js"></script>
+
+</body>
+</html>
